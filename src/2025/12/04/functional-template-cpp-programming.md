@@ -58,8 +58,7 @@ For example, with a `Vec4` struct template with a generic argument of type `T`.
 
 ```cpp
 template <typename T> struct Vec4 {
-    Vec4(T x, T y, T z, T w) : data{x, y, z, w}
-    {}
+    Vec4(T x, T y, T z, T w) : data{x, y, z, w} {}
 
     auto get(std::size_t i) -> T {
         return data[i];
@@ -79,8 +78,7 @@ We can then define a different implementation by defining a `Vec4<bool>` special
 ```cpp
 template <> struct Vec4<bool> {
     Vec4(bool x, bool y, bool z, bool w)
-        : data((std::uint8_t)x | (y << 1) | (z << 2) | (w << 3))
-    {}
+        : data((std::uint8_t)x | (y << 1) | (z << 2) | (w << 3)) {}
 
     auto get(std::size_t i) -> bool {
         return (data >> i) & 1;
