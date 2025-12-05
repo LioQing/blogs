@@ -1,0 +1,11 @@
+[book]
+title = "Lio Qing's Blogs"
+authors = ["LioQing"]
+language = "en"
+
+[output.html]
+no-section-label = true
+
+[output.html.fold]
+enable = true
+level = 0
