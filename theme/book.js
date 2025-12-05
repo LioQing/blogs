@@ -380,7 +380,7 @@ aria-label="Show hidden lines"></button>';
     function set_theme(theme, store = true) {
         let ace_theme;
 
-        if (theme === 'coal' || theme === 'navy') {
+        if (theme === 'coal' || theme === 'navy' || theme === 'lio') {
             stylesheets.ayuHighlight.disabled = true;
             stylesheets.tomorrowNight.disabled = false;
             stylesheets.highlight.disabled = true;

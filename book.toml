@@ -5,6 +5,7 @@ language = "en"
 
 [output.html]
 no-section-label = true
+# additional-css = ["lioqing-highlight.css"]
 
 [output.html.fold]
 enable = true
