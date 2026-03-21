@@ -71,7 +71,7 @@ You may think that using a framework like [React](https://react.dev/) would be a
 
 Unless I absolutely want certain features or libraries from the ecosystem of the framework (especially for the beautiful animations and asthetics), I would prefer to [just f**king use HTML](https://justfuckingusehtml.com/).
 
-## The Collaboration with GitHub Copilot
+## The Collaboration with GitHub Copilot for Handling the Data in Rust
 
 After brief consulting with Gemini to confirm the feasibility of reconstructing my hiking tracks using the Google Fit data, I decided to dive straight into building it.
 
@@ -117,7 +117,10 @@ While I added the cleaner at almost the end of the project, I want to group it t
 
 When I was checking out my hiking tracks in the website, I realized that sometimes due to me forgetting to complete the tracking in Google Fit app, my positions when I was on railway would get recorded. It makes me look like I am flying across the city.
 
-**Insert video of me flying across the city**
+<video controls>
+  <source src="me-flying-across-the-city.mp4" type="video/mp4">
+</video>
+<i>Me flying across the city.</i>
 
 So I created another Rust project for removing unwanted data points using boolean expression filter rules.
 
@@ -132,14 +135,101 @@ And the result is the following expected format.
 !(timestamp > 1769925420000 && timestamp < 1769961600000) // 2026-02-01 after 13:57: forgot to turn off tracking in MTR
 ```
 
-Apart from the extra data points, I also realized that sometimes due to me forgetting to resume the tracking in the Google Fit app, the data points are missing in those sections.
-
-**Insert image of tracks with missing data**
+![Track with Missing Data](track-with-missing-data.png)
+*Track with missing data.*
 
 It certainly makes the visualization a lot more unpleasant to watch, so I had to find a solution.
 
 While Google Fit itself uses some kind of weird algorithm to try to estimate the missing positions in between, the result is... kind of inaccurate (It is very inaccurate to be honest).
 
-**Insert image of Google Fit with missing points**
+After making sure everything behaves exactly as I expect, I did the same thing as the extractor project. Manually did some documentation and told copilot to refactor some functions into different modules.
 
-So at the end I decided to just let copilot to implement a manual solution - let the user enter the timestamp in 
+![Google Fit with Missing Data](google-fit-with-missing-data.png)
+*Google Fit with missing data.*
+
+So at the end I decided to just let copilot to implement a manual solution - let the user enter the timestamp during extraction with a `supp.csv` optional file in the following format:
+
+```
+2026-03-07 11:40:00,22.257119218707395,114.16070126817006
+2026-03-07 11:41:00,22.25710742147126,114.16132644010563
+2026-03-07 11:42:00,22.257874943823307,114.16142850051098
+...
+```
+
+And the result looks good enough in my opinion.
+
+![Track with Supp Data](track-with-supp-data.png)
+*Track with supp data.*
+
+Lastly, I told copilot to clean all these up by making the program takes CLI arguments using the [Clap](https://crates.io/crates/clap) crate, which I am very familiar with. I made some minor adjustment after copilot's edit and told copilot to break up the one big main file into small modules.
+
+## Letting GitHub Copilot to just be the Pilot in HTML, JS, and CSS
+
+Getting the visualization in was the biggest uncertainty about this project as I didn't know the best way to make a map viewer. Fortunately, I found out [CesiumJS](https://cesium.com/platform/cesiumjs/) later which saved my a lot of work.
+
+### The Failed Early Attempt at a 2D LOD Map Rendering
+
+I attempted to screenshot Google Map in different resolution and then render them individually in the beginning. I was surprised to find that copilot was able to do it very quickly, and it looked like it worked perfectly at first. But then I found out it doesn't work on less powerful devices like laptops and phones.
+
+**Insert video of the issue in phone**
+
+The issue was most likely the many LOD chunks. I was using 4K images per chunk and hoping it would work, but apparently some devices are just not powerful enough to render multiple 4K images at certain zoom level...
+
+The whole point of putting a viewer like this on the website is so that I can view it anywhere, which is also the reason I got into web development. (I am not a big fan of the current mainstream web development technologies, I am here just for the cross-platform compatibility!)
+
+### Open3Dhk and CesiumJS
+
+Then one day during work, I found out during a conversation with coworkers that the Hong Kong Lands Department has a project called [Open3Dhk](https://3d.map.gov.hk/) that provide high quality 3D landscape model. Looking into the website, I found out it uses a very simple API to render the 3D map - [CesiumJS](https://cesium.com/platform/cesiumjs/).
+
+> [!NOTE]
+>
+> Yes, for some reason I did not look into any existing API for rendering maps in vanilla JS... My research and planning ability still have a lot to improve.
+
+I immediately told copilot to try the API by giving it some examples from the Open3Dhk website. And it worked instantly!
+
+Wow, that was way easier than what I did with all that LOD chunked rendering.
+
+### Finishing Up the Features
+
+I had many features in mind, but all of them are basically completely implemented by copilot and I did not take a look at any of the technical details. This includes:
+
+- The playback controls
+
+  ![Playback Controls](playback-controls.png)
+
+- The information panel for both general information and live data during playback
+
+  ![Information Panel](information-panel.png)
+
+- The selection of different layers like 2D contour map, 2D satellite map, 3D models, etc.
+
+  ![Layer 2D Contour](layer-2d-contour.png)
+  ![Layer 2D Satelite](layer-2d-satelite.png)
+  ![Layer 3D Models](layer-3d-models.png)
+
+Of course, I had to find the resources for copilot to use, some of which are [Cesium Ion](https://cesium.com/platform/cesium-ion/) for hosting the map assets and the [Digital Terrain Model for Hong Kong from Lands Department](https://portal.csdi.gov.hk/geoportal/?lang=en&datasetId=landsd_rcd_1638158088368_93806) for having a realistic height for the 2D layers.
+
+One key difference on how I interact with copilot when I was working on the viewer is that I hand off a lot more decisions (especially technical decisions). For instance, I have no idea how are the longitude and latitude mapped to the terrain, nor am I aware of the algorithm it uses to calculate distance and speed. This makes me be less aware of the technical feasibility of features or changes I want.
+
+Overall, it still works quite well though.
+
+## Conclusion and Reflection
+
+In this project, I took 2 approach to vibe coding on 2 different parts of the project.
+
+- For the data handling, I designed and planned almost every implementation, **I designed the functional requirements and checked the technical feasibility** of the methods I decided to use. Then **handed the actual coding part of it to copilot, which I provisioned carefully all lines of code generated** despite not writing any myself. Copilot is essentially just a very powerful autocomplete, or english-to-code translater, and although I had to spend more effort in making sure my prompts are correct and clear, it worked relatively well.
+
+- For the viewer, **I designed only the functional requirements and researched some resources for it**. I **left all the technical decisions and implementations to copilot, I don't even look at any lines of code generated by it** (with the exception of some configuration numbers and strings). In this case, copilot acts like a junior engineer for me, I have to point it to the right direction, and it has to find the path itself. However, it sometimes would assume what I said have to be done, even when the technical feasibility is questionable. When the result is not satisfactory to me, I would either force it to try again to match what I want, or I have to explicitly ask copilot to analyze the technical feasibility. Copilot not being able to question my decision is a big weakness in this approach, wasting some time and effort.
+
+For a long time, I've been thinking that AI agents not being able to question the decision made by the user is a big weakness in human-AI communication, which is also why I think the second approach can leave a lot of issues hidden in the code. I believe vibe coding without any software engineering knowledge is definitely unsustainable and risky.
+
+And I think the future of coding AI agents should definitely be improving the communication aspect of it, just like any software engineer needs to learn how to manage their projects and express their concerns towards the functional requirements to the project manager. And I do see some improvement in this area as I remember in this project that copilot asked for clarification in one of my prompts, so hopefully it will be much better at asking for clarifications in the future.
+
+> [!NOTE]
+>
+> The website is still receiving more features, such as drag and drop the csv into the website to display any file's track!
+
+### Appendix
+
+- [Website - My Hike Tracker](https://lioqing.com/my-hike-tracker/)
+- [GitHub repository with source code](https://github.com/LioQing/my-hike-tracker)
