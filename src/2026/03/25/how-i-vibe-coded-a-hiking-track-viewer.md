@@ -1,6 +1,6 @@
 # How I Vibe Coded a Hiking Track Viewer
 
-2026-03-11
+2026-03-24
 
 ---
 
@@ -16,7 +16,7 @@ However, since I am now a full-time software engineer, I don't really want to sp
 >
 > I also did not do everything in one session, I intentionally broke the conversations into different sections for specific reason explained later and for avoiding overflowing the context window.
 
-And it did work out for me, it only took me around 3 evenings prompting [GitHub Copilot Pro](https://github.com/github-copilot/pro). I am pretty satisfied with the result.
+And it did work out for me, it only took me around 3 evenings prompting [GitHub Copilot Pro](https://github.com/github-copilot/pro). I am pretty satisfied with the result, you can visit it at [https://lioqing.com/my-hike-tracker/](https://lioqing.com/my-hike-tracker/).
 
 **Insert video of the website**
 
@@ -171,7 +171,10 @@ Getting the visualization in was the biggest uncertainty about this project as I
 
 I attempted to screenshot Google Map in different resolution and then render them individually in the beginning. I was surprised to find that copilot was able to do it very quickly, and it looked like it worked perfectly at first. But then I found out it doesn't work on less powerful devices like laptops and phones.
 
-**Insert video of the issue in phone**
+<video controls>
+  <source src="2d-lod-map-with-issues-in-phone.webm" type="video/webm">
+</video>
+<i>2D LOD map with issues in phone.</i>
 
 The issue was most likely the many LOD chunks. I was using 4K images per chunk and hoping it would work, but apparently some devices are just not powerful enough to render multiple 4K images at certain zoom level...
 

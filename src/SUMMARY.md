@@ -10,4 +10,4 @@
 
 # 2026
 
-<!-- - [Mar 11 - How I Vibe Coded a Hiking Track Viewer](./2026/03/11/how-i-vibe-coded-a-hiking-track-viewer.md) -->
+<!-- - [Mar 25 - How I Vibe Coded a Hiking Track Viewer](./2026/03/25/how-i-vibe-coded-a-hiking-track-viewer.md) -->
