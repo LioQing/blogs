@@ -1,6 +1,6 @@
 # How I Vibe Coded a Hiking Track Viewer
 
-2026-03-24
+2026-03-25
 
 ---
 
@@ -18,7 +18,10 @@ However, since I am now a full-time software engineer, I don't really want to sp
 
 And it did work out for me, it only took me around 3 evenings prompting [GitHub Copilot Pro](https://github.com/github-copilot/pro). I am pretty satisfied with the result, you can visit it at [https://lioqing.com/my-hike-tracker/](https://lioqing.com/my-hike-tracker/).
 
-**Insert video of the website**
+<video controls>
+  <source src="my-hike-tracker.mp4" type="video/mp4">
+</video>
+<i>My hike tracker demo.</i>
 
 In the process, I applied a lot of ideas that I gained from previously coding with LLMs, but I also learnt something new about 
 letting AI code an entire project. I'll share them one by one in the following sections.
