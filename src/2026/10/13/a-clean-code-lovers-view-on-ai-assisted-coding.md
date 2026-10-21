@@ -66,7 +66,7 @@ While this is the most limited way to write AI generated code afaik, it is the m
 
 As a result, I still find this as the best use of AI in coding if clean code and keeping human-in-the-loop for providioning is the absolute highest priority in your project.
 
-Of course, this approach has now mostly been superceded by newer approaches that utilizes prompts to provide clearer objectives to the AI to guarantee user's intention is explicit (which I also have some interesting thoughts on as you'll see in the _xxxx section_).
+Of course, this approach has now mostly been superceded by newer approaches that utilizes prompts to provide clearer objectives to the AI to guarantee user's intention is explicit.
 
 ### Chat Generated Code
 
@@ -159,17 +159,17 @@ For a single feature or a small project, I believe it completely depends on the 
 
 I would compare medium sized code changes to cooking a dish. If as the human, you know each steps well, then you can probably supervise a robot doing it and pick out what did it do wrong.
 
-Some example of these medium sized changes are one new endpoint with the corresponding database changes, one temporary dashboard UI, or a prototype project.
+Some example of these medium sized changes are one new endpoint with the corresponding database changes, one temporary dashboard UI, or a prototype project involving several components.
 
-Doing it the vibe coding way (no human review) is not possible for me if I will ever maintain the code, since I am sure the code will be very "sloppy" and I'll get irritated by minor inconsistency of the code not matter the quality of the AI agent.
+Doing it the vibe coding way (no human review) is not possible for me if I want to maintain the code, since I am sure the code will be quite "sloppy" and I'll get irritated by minor inconsistency of the code no matter the quality of the AI agent.
 
 > [!NOTE]
 > 
 > The minor inconsistency are especially noticable if you or your team use different harnesses or LLM models, as the prompts and model styles are different.
 > 
-> For example, I find that GPT models always try to write very compact code, meaning no blank lines and no redundant new lines, without explicit coding style prompts even with surrounding context,.
+> For example, I find that GPT models always try to write very compact code, meaning no blank lines and no redundant new lines even with surrounding context. I'd have to provide explicit prompts to make sure they output code with blank lines at logic boundaries for readability.
 
-So for these changes, I usually do it in chunks and made sure I understand it. If I don't understand the technical or conceptual details of these changes, I will make sure to learn it before handing it over to the AI. One of the ways I found to be quite useful is to just have a discussion session with the AI agent before telling it to make the move. I have a [guided-learning](https://github.com/lioqing/master/blob/skills/guided-learning/SKILL.md) specifically made for these learning sessions.
+So for these changes, I usually do it in chunks and made sure I understand it. If I don't understand the technical or conceptual details of these changes, I will make sure to learn it before handing it over to the AI. One of the ways I found to be quite useful is to just have a discussion session with the AI agent before telling it to make the move. I have a [guided-learning](https://github.com/LioQing/.agents/blob/master/skills/guided-learning/SKILL.md) skill specifically made for these learning sessions.
 
 ### Large Scale Changes are Hard to Determine...
 
@@ -183,25 +183,74 @@ That means human review and setups must not be excluded in the development proce
 
 For projects that are very short-term and temporary, I have no issue with vibe coding it.
 
-Being a software engineer, I should understand the importance of estimating the cost-effectiveness of a development process. Back then without AI, when I wants to make a project with an interesting idea I got, I would have to research the feasibility and learn the technology required to implement it.
+Being a software engineer, I should understand the importance of estimating the cost-effectiveness of a development process, and for these very limited scoped temporary/fun/proof-of-concept (POC) projects we usually want to get the result as soon as possible without considering the future cost or tech debt. However, back then without AI, when I wants to make a project with a random interesting idea, I would still have to research the feasibility and learn the technology required to implement it.
 
 Hence the Internet meme of business friend telling a software engineer to build a SaaS because he had a "genius" idea without knowing the engineering effort it requires.
 
-_Insert meme_
+_Insert bro I've got the craziest idea for an app meme_
 
 Nowadays, we can prototype a project in the matter of a few hours that would have required weeks to months of manual engineering efforts back then.
 
-I think projects like these are reasonable vibe coding projects, even I have a few (see appendix).
+I think projects like these are reasonable vibe coding projects, and I already have [a few of these](https://github.com/search?q=user%3ALioQing+topic%3Avibe-coded&type=repositories).
 
 Of course, if these ever becomes a proper project requiring long term maintenance, how to transition it into a maintaintable project would be a serious question. I haven't try to convert a vibe coded project into a proper one as well, so it would be an interesting thing to learn for me.
 
 > [!NOTE]
 > 
-> Just thoughts:
+> Just random thought:
 > 
-> I have some projects that I rushed through just to prove the concept and ended up as a proper project that I still maintain to this day ([wgpu-3dgs-viewer](https://crates.io/crate/wgpu-3dgs-viewer) and [LLM Extrnsions for Command Palette]()).
+> I have some projects that I rushed through (written by hand) just to prove the concept and ended up as a proper project that I still maintain to this day ([wgpu-3dgs-viewer](https://crates.io/crate/wgpu-3dgs-viewer) and [LLM Extrnsions for Command Palette](https://github.com/LioQing/llm-extension-for-cmd-pal)).
 > 
 > Maybe the process for a vibe coded project will be similar.
 
-## My View on the Overall Current AI Situation
+## My View on the General AI Situation
 
+Now that we've discussed my views on the maintainability and cleanliness of AI generated code, let's talk about the bigger picture.
+
+I have both worries and excitements for the rapidly evolving AI technology.
+
+### Slop Everywhere & AI Psychosis
+
+This is definitely one of my biggest worries of the technology.
+
+The ability to easily create softwares and websites sounds great at first. Everyone can create a version of a software or website that they had in mind, they'll also be able to alter any of their softwares using AI agents.
+
+However, I soon realized that it changes people's mindset towards software. After using more frontier AI agents, it becomes easier to think "let's build a software with this feature I want using AI" instead of "let's check if there is existing softwares that does this feature". It always feel better and seems more "productive" when a software is tailor-made for me by me (by AI agent), than to learn how to use a new software built by someone else that might not match exactly what I want. It really brings out the narcissism in us. This is what [AI psychgosis](https://en.wikipedia.org/wiki/AI-induced_psychosis) is.
+
+If this is true for everyone, we'll slowly get to a point where everyone is living in their own bubble created by the AI agent and becomes reluctant to work with other real humans. Just like the matrix.
+
+And then, software standardization and the Internet developments might be much more difficult, which'll be quite a regression from the last few decades.
+
+_Insert evolving just backwards meme_
+
+### The Bubble or The Revolution
+
+Another concern I have, albeit probably much more short term and uncertain, is that the current AI hype is a bubble.
+
+It is clear that the current AI development is facing a lot of skepticism. I have a lot of doubts for the current AI development as well. The fact that all of these are basically just the transformer architecture, and that most of the market's hypes comes from only this single technology. It just makes me wonder, is it really possible to bring revolutionary improvement to our society based on just this transform architecture? Is it really worth it to damange our environments like this just to make our life a little bit more convenient?
+
+Of course, we don't know if we are really in a bubble, we only realize a trend is a bubble after it has popped. Though I do think at the end it will largely depends on the current frontier AI labs like OpenAI and Anthropics. If we found out running transformer models doesn't actually bring enough value to justify it's cost, then we'll know that this technology might not be really worth it.
+
+But if there comes a second breakthrough in this or related technology, then the current technology could prove to be a stepping stone to there and we'll really be at the next industrial revolution.
+
+> [!NOTE]
+>
+> As a PC gamer, I am also sad to see that the prime era of PC gaming has probably become the past now.
+>
+> With the new AI market competing for the same limited hardware resources and supply chain, PC hardwares (especially memory) are becoming so expensive now. Undoubtedly, many of the high-end gaming brands will lose a lot of customers, and PC gaming market is probably going to diminish quite a lot.
+
+### A Bright New Internet
+
+One of the biggest excitements I have about the AI development though, is somewhat a twist of AI psychosis. It also highly related to the topic of this blog post.
+
+Maybe it isn't a psychosis? What if we are still willing to work with other humans, and create an organization, a standardization for AI usage and communication? And what if some protocols/architectures get mainstream adoption that improves our hardwares and softwares drastically?
+
+My operating system course professor in university and a colleague at work both talked about this. The next generation of operating systems (OS) and computer softwares could be completely AI managed. AI could generate low level code for system operations and softwares for the user on the fly. AI would also modify the same low level code as the user changes requirements.
+
+But then, we'll need to really tackle the inconsistency in AI models either by engineering around it or making breakthrough in the model itself to make sure the system is stable. And we'll also need to make sure the AI follows protocols consistently so that the Internet won't be toppled because hallucinating AIs are controlling all of our computers.
+
+## Conclusion
+
+As an engineer, I want to keep myself informed and in control. To do this, I need to analyze both my own and AI agents' abilities, and take up the right responsibility. This may be difficult as it is tempting to just hand everything to AI for us, but I blieve it will be worth it to keep myself away from having AI psychosis.
+
+It is also the same in the bigger picture. As Stan Lee said, with great power comes great responsibility.
