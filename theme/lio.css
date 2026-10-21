@@ -1,0 +1,123 @@
+.lio {
+    --bg: #181818;
+    --fg: #cccccc;
+
+    --sidebar-bg: #1f1f1f;
+    --sidebar-fg: #999999;
+    --sidebar-non-existant: #555555;
+    --sidebar-active: #4bb4e9;
+    --sidebar-spacer: #393939;
+
+    --scrollbar: var(--sidebar-fg);
+
+    --icons: #555555;
+    --icons-hover: #999999;
+
+    --links: #4bb4e9;
+
+    --inline-code-color: #cccccc;
+
+    --theme-popup-bg: #1f1f1f;
+    --theme-popup-border: #3c3c3c;
+    --theme-hover: #2c2c2c;
+
+    --quote-bg: #1f1f1f;
+    --quote-border: #3c3c3c;
+
+    --warning-border: #ff8e00;
+
+    --table-border-color: #333333;
+    --table-header-bg: #2c2c2c;
+    --table-alternate-bg: #1f1f1f;
+
+    --searchbar-border-color: #666666;
+    --searchbar-bg: #555555;
+    --searchbar-fg: #cccccc;
+    --searchbar-shadow-color: #444444;
+    --searchresults-header-fg: #999999;
+    --searchresults-border-color: #999999;
+    --searchresults-li-bg: #2b2b2b;
+    --search-mark-bg: #666666;
+
+    --color-scheme: dark;
+
+    /* Same as `--icons` */
+    --copy-button-filter: invert(26%) sepia(8%) saturate(575%) hue-rotate(169deg) brightness(87%) contrast(82%);
+    /* Same as `--sidebar-active` */
+    --copy-button-filter-hover: invert(36%) sepia(70%) saturate(503%) hue-rotate(167deg) brightness(98%) contrast(89%);
+
+    --footnote-highlight: #4079ae;
+
+    --overlay-bg: rgba(33, 40, 48, 0.4);
+
+    --blockquote-note-color: #63a7ff;
+    --blockquote-tip-color: #00dd00;
+    --blockquote-important-color: #a570ff;
+    --blockquote-warning-color: #ffc400;
+    --blockquote-caution-color: #ff4f5a;
+
+    --sidebar-header-border-color: #4bb4e9;
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not(.js) {
+        --bg: #181818;
+        --fg: #cccccc;
+
+        --sidebar-bg: #1f1f1f;
+        --sidebar-fg: #999999;
+        --sidebar-non-existant: #555555;
+        --sidebar-active: #4bb4e9;
+        --sidebar-spacer: #393939;
+
+        --scrollbar: var(--sidebar-fg);
+
+        --icons: #555555;
+        --icons-hover: #999999;
+
+        --links: #4bb4e9;
+
+        --inline-code-color: #cccccc;
+
+        --theme-popup-bg: #1f1f1f;
+        --theme-popup-border: #3c3c3c;
+        --theme-hover: #2c2c2c;
+
+        --quote-bg: #1f1f1f;
+        --quote-border: #3c3c3c;
+
+        --warning-border: #ff8e00;
+
+        --table-border-color: #333333;
+        --table-header-bg: #2c2c2c;
+        --table-alternate-bg: #1f1f1f;
+
+        --searchbar-border-color: #666666;
+        --searchbar-bg: #555555;
+        --searchbar-fg: #cccccc;
+        --searchbar-shadow-color: #444444;
+        --searchresults-header-fg: #999999;
+        --searchresults-border-color: #999999;
+        --searchresults-li-bg: #2b2b2b;
+        --search-mark-bg: #666666;
+
+        --color-scheme: dark;
+
+        /* Same as `--icons` */
+        --copy-button-filter: invert(26%) sepia(8%) saturate(575%) hue-rotate(169deg) brightness(87%) contrast(82%);
+        /* Same as `--sidebar-active` */
+        --copy-button-filter-hover: invert(36%) sepia(70%) saturate(503%) hue-rotate(167deg) brightness(98%) contrast(89%);
+
+        --footnote-highlight: #4079ae;
+
+        --overlay-bg: rgba(33, 40, 48, 0.4);
+
+        --blockquote-note-color: #63a7ff;
+        --blockquote-tip-color: #00dd00;
+        --blockquote-important-color: #a570ff;
+        --blockquote-warning-color: #ffc400;
+        --blockquote-caution-color: #ff4f5a;
+
+        --sidebar-header-border-color: #4bb4e9;
+    }
+}

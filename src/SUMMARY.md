@@ -11,3 +11,4 @@
 # 2026
 
 - [Mar 25 - How I Vibe Coded a Hiking Track Viewer](./2026/03/25/how-i-vibe-coded-a-hiking-track-viewer.md)
+- [Oct 13 - AI-Assisted Coding Through the Lens of Code Quality](./2026/10/13/ai-assisted-coding-through-the-lens-of-code-quality.md)
